@@ -1,58 +1,77 @@
+import * as process from 'process'
+
 const n = 256;
-let message: string[];
 
-function fizz(num: number, msg: string[]): string[]{
-    if (num % 3 == 0) {
-        message.push("Fizz");
+let arg: string[] = process.argv.slice(2)
+if (arg.length != 3) {
+    console.log("Invalid number of parameters");
+    process.exit(1);
+}
+if (arg.indexOf("7") != -1 || arg.indexOf("11") != -1 || arg.indexOf("17") != -1) {
+    console.log("Invalid parameters (You must exclude 7, 11 and 17)");
+    process.exit(1);
+}
+let fizzNum: number = Number(arg[0]);
+let buzzNum: number = Number(arg[1]);
+let fezzNum: number = Number(arg[2]);
+
+function fizz(num: number, messageParts: string[]): string[] {
+    if (num % fizzNum == 0) {
+        messageParts.push("Fizz");
     }
-    return msg; 
+    return messageParts; 
 }
 
-function buzz(num: number, msg: string[]): string[]{
-    if (num % 5 == 0) {
-        msg.push("Buzz");
+function buzz(num: number, messageParts: string[]): string[] {
+    if (num % buzzNum == 0) {
+        messageParts.push("Buzz");
     }
-    return msg;
+    return messageParts;
 }
 
-function bang(num: number, msg: string[]): string[]{
+function bang(num: number, messageParts: string[]): string[] {
     if (num % 7 == 0) {
-        msg.push("Bang");
+        messageParts.push("Bang");
     }
-    return msg;
+    return messageParts;
 }
 
-function bong(num: number, msg: string[]): string[]{
+function bong(num: number, messageParts: string[]): string[] {
     if (num % 11 == 0) {
-        msg = ["Bong"];
+        messageParts = ["Bong"];
     }
-    return msg;
+    return messageParts;
 }
 
-function fezz(num: number, msg: string[]): string[]{
-    if (num % 13 == 0) {
-        msg.unshift("Fezz");
+function fezz(num: number, messageParts: string[]): string[] {
+    if (num % fezzNum == 0) {
+        messageParts.unshift("Fezz");
     }
-    return msg;
+    return messageParts;
 }
 
-function reverse_on_17(num: number, msg: string[]): string[]{
+function reverseOn17(num: number, messageParts: string[]): string[] {
     if (num % 17 == 0) {
-        msg.reverse();
+        messageParts.reverse();
     }
-    return msg;
+    return messageParts;
+}
+
+function checkNoRuleApplied(num: number, messageParts: string[]): string[] {
+    if (messageParts.length == 0) {
+        messageParts.push(num.toString());
+    }
+    return messageParts;
 }
 
 for (let i = 1; i <= n; i += 1) {
-    message = [];
+    let message: string[] = [];
     message = fizz(i, message);
     message = buzz(i, message);
     message = bang(i, message);
     message = bong(i, message);
     message = fezz(i, message);
-    message = reverse_on_17(i, message);
-    if (message.length == 0) {
-        message.push(i.toString());
-    }
+    message = reverseOn17(i, message);
+    message = checkNoRuleApplied(i, message);
     console.log(message.join(""));
 }
