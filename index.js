@@ -1,49 +1,42 @@
-const n = 256;
-let message: string[];
-
-function fizz(num: number, msg: string[]): string[]{
+var n = 256;
+var message;
+function fizz(num, msg) {
     if (num % 3 == 0) {
         message.push("Fizz");
     }
-    return msg; 
+    return msg;
 }
-
-function buzz(num: number, msg: string[]): string[]{
+function buzz(num, msg) {
     if (num % 5 == 0) {
         msg.push("Buzz");
     }
     return msg;
 }
-
-function bang(num: number, msg: string[]): string[]{
+function bang(num, msg) {
     if (num % 7 == 0) {
         msg.push("Bang");
     }
     return msg;
 }
-
-function bong(num: number, msg: string[]): string[]{
+function bong(num, msg) {
     if (num % 11 == 0) {
         msg = ["Bong"];
     }
     return msg;
 }
-
-function fezz(num: number, msg: string[]): string[]{
+function fezz(num, msg) {
     if (num % 13 == 0) {
         msg.unshift("Fezz");
     }
     return msg;
 }
-
-function reverse_on_17(num: number, msg: string[]): string[]{
+function reverse_on_17(num, msg) {
     if (num % 17 == 0) {
         msg.reverse();
     }
     return msg;
 }
-
-for (let i = 1; i <= n; i += 1) {
+for (var i = 1; i <= n; i += 1) {
     message = [];
     message = fizz(i, message);
     message = buzz(i, message);
