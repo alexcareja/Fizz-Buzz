@@ -2,7 +2,7 @@ import * as process from 'process'
 
 const n = 256;
 
-let arg: string[] = process.argv.slice(2)
+const arg = process.argv.slice(2)
 if (arg.length != 3) {
     console.log("Invalid number of parameters");
     process.exit(1);
@@ -11,9 +11,9 @@ if (arg.indexOf("7") != -1 || arg.indexOf("11") != -1 || arg.indexOf("17") != -1
     console.log("Invalid parameters (You must exclude 7, 11 and 17)");
     process.exit(1);
 }
-let fizzNum: number = Number(arg[0]);
-let buzzNum: number = Number(arg[1]);
-let fezzNum: number = Number(arg[2]);
+const fizzNum = Number(arg[0]);
+const buzzNum = Number(arg[1]);
+const fezzNum = Number(arg[2]);
 
 function fizz(num: number, messageParts: string[]): string[] {
     if (num % fizzNum == 0) {
